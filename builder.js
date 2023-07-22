@@ -8,12 +8,18 @@ const jest = require("jest");
 const mode = process.argv[2] || "";
 
 /** @satisfies {import("esbuild").BuildOptions} */
+const baseConfig = {
+  bundle: true,
+  platform: "node"
+};
+
+/** @satisfies {import("esbuild").BuildOptions} */
 const devConfig = {
+  ...baseConfig,
   entryPoints: [
     "src/index.ts",
     "test/index.test.ts",
   ],
-  bundle: true,
   minify: false,
   sourcemap: false,
   outdir: "dist-dev"
@@ -21,14 +27,13 @@ const devConfig = {
 
 /** @satisfies {import("esbuild").BuildOptions} */
 const prodConfig = {
+  ...baseConfig,
   entryPoints: [
     "src/index.ts",
   ],
-  bundle: true,
   minify: true,
   sourcemap: false,
   outdir: "dist",
-  platform: "node"
 };
 
 /**

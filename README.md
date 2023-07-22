@@ -9,7 +9,7 @@
 - Run `npm update` to 
   - update package name in [package-lock.json](/package-lock.json) and
   - update dependencies.
-- Rename/restructure `MyApp` in [/src/index.ts](/src/index.ts).
+- Update app name in [/src/AppInfo.ts](/src/AppInfo.ts).
 - Adjust files in [/src/](/src/) and [/test/](/test/) as needed.
 - Update [/README.md](/README.md) as needed.
 

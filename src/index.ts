@@ -1,7 +1,9 @@
+import { AppInfo } from "./AppInfo";
+import { CLI } from "./CLI";
 import { Dummy } from "./Dummy";
-import { Log } from "./Log";
 
-export const MyApp = {
-    Log: Log,
-    Dummy: Dummy,
+export {
+    AppInfo,
+    CLI,
+    Dummy,
 };
