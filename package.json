@@ -1,0 +1,25 @@
+{
+  "name": "template-ts",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "npm run test:tsc; npm run test:jest;",
+    "test:jest": "node builder.js test",
+    "test:tsc": "tsc --noEmit",
+    "watch": "node builder.js watch",
+    "dev": "node builder.js dev",
+    "prebuild": "npm run test",
+    "build": "npm run build:declarations; npm run build:js",
+    "build:js": "node builder.js build",
+    "build:declarations": "tsc --declaration --emitDeclarationOnly"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.3",
+    "esbuild": "^0.17.19",
+    "jest": "^29.6.1",
+    "typescript": "^5.1.6"
+  }
+}
