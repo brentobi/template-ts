@@ -10,6 +10,7 @@
   - update dependencies.
 - Rename/restructure `MyApp` in [/src/index.ts](/src/index.ts).
 - Adjust files in [/src/](/src/) and [/test/](/test/) as needed.
+- Update [/README.md](/README.md) as needed.
 
 ## Project usage
 [tbd]
