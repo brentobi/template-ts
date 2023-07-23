@@ -7,6 +7,14 @@ const jest = require("jest");
 
 const mode = process.argv[2] || "";
 
+const entryPointsProd = [
+  "src/bin.ts",
+  "src/main.ts",
+];
+const entryPointsDev = [
+  "test/index.test.ts",
+];
+
 /** @satisfies {import("esbuild").BuildOptions} */
 const baseConfig = {
   bundle: true,
@@ -17,8 +25,8 @@ const baseConfig = {
 const devConfig = {
   ...baseConfig,
   entryPoints: [
-    "src/index.ts",
-    "test/index.test.ts",
+    ...entryPointsProd,
+    ...entryPointsDev,
   ],
   minify: false,
   sourcemap: false,
@@ -29,7 +37,7 @@ const devConfig = {
 const prodConfig = {
   ...baseConfig,
   entryPoints: [
-    "src/index.ts",
+    ...entryPointsProd,
   ],
   minify: true,
   sourcemap: false,
