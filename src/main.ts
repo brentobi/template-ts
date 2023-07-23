@@ -1,9 +1,9 @@
+import App from "./App";
 import { AppInfo } from "./AppInfo";
-import { CLI } from "./CLI";
 import { Dummy } from "./Dummy";
 
 export {
+    App,
     AppInfo,
-    CLI,
     Dummy,
 };

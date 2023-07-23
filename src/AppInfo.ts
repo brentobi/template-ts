@@ -4,19 +4,25 @@ const NAME = "MyApp";
 const VERSION = "0.0.1";
 
 export class AppInfo {
-    static getName() {
+    public static getName() {
         return NAME;
     }
-    static getVersion() {
+    public static getVersion() {
         return VERSION;
     }
-    static getNameAndVersion() {
+    public static getNameAndVersion() {
         return `${AppInfo.getName()} ${AppInfo.getVersion()}`;
     }
-    static getRootDirectory() {
+    public static getDistDirectory() {
         return __dirname;
     }
-    static getBinPath() {
-        return path.join(__dirname, "bin.js");
+    public static getRootDirectory() {
+        return path.dirname(this.getDistDirectory());
+    }
+    public static getBinPath() {
+        return path.join(this.getDistDirectory(), "bin.js");
+    }
+    public static getPublicDirectory() {
+        return path.join(this.getRootDirectory(), "public");
     }
 }

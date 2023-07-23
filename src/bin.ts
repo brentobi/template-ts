@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { CLI } from "./CLI";
+import App from "./App";
 
-(async () => {
-    await CLI.exec(process.argv);
-})();
+const args = process.argv.slice(2);
+const app = new App();
+app.run(...args);
