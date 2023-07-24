@@ -12,12 +12,16 @@ export default class ServeCommand extends Command {
     public override async run(call: CommandCall): Promise<void> {
         const app = express();
         const port = parseInt(call.args[0], 10) || 3000;
+        const appName = await AppInfo.getName();
+        const appVersion = await AppInfo.getVersion();
+        const appDescription = await AppInfo.getDescription();
 
         app.get("/api/version", (req, res) => {
             res.contentType("application/json");
             res.send(JSON.stringify({
-                name: AppInfo.getName(),
-                version: AppInfo.getVersion(),
+                name: appName,
+                version: appVersion,
+                description: appDescription, 
             }));
         });
 

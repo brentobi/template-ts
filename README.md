@@ -1,16 +1,15 @@
-# template-ts - Template repository for TypeScript projects
+# template-ts - TypeScript project template
 
 ## Template usage
 - Clone template files into your new repo.
 - Update [/package.json](/package.json). 
-  - Update package name. Replace `template-ts` with a new name.
+  - Update package name, version and description.
   - Update dependency version ranges if needed.
 - Check if new major versions of dependencies are available and install if needed.
 - Run `npm update` to 
   - update package name in [package-lock.json](/package-lock.json) and
   - update dependencies.
 - Adjust files in [/src/](/src/) and [/test/](/test/) as needed.
-  - Update app name in [/src/AppInfo.ts](/src/AppInfo.ts).
   - Consider removing [/src/Dummy.ts](/src/Dummy.ts) 
     and the related test from [/test/index.test.ts](/test/index.test.ts).
 - Consider removing webserver related code if not needed.

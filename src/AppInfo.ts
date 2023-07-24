@@ -1,17 +1,21 @@
+import fsPromises from "fs/promises";
 import path from "path";
 
-const NAME = "MyApp";
-const VERSION = "0.0.1";
-
 export class AppInfo {
-    public static getName() {
-        return NAME;
+    public static async getName() {
+        const packageJson = await AppInfo.readPackageJson();
+        return "name" in packageJson ? packageJson.name : "";
     }
-    public static getVersion() {
-        return VERSION;
+    public static async getDescription() {
+        const packageJson = await AppInfo.readPackageJson();
+        return "description" in packageJson ? packageJson.description : "";
     }
-    public static getNameAndVersion() {
-        return `${AppInfo.getName()} ${AppInfo.getVersion()}`;
+    public static async getVersion() {
+        const packageJson = await AppInfo.readPackageJson(); 
+        return "version" in packageJson ? packageJson.version : "";
+    }
+    public static async getNameAndVersion() {
+        return `${await AppInfo.getName()} ${await AppInfo.getVersion()}`;
     }
     public static getDistDirectory() {
         return __dirname;
@@ -24,5 +28,16 @@ export class AppInfo {
     }
     public static getPublicDirectory() {
         return path.join(this.getRootDirectory(), "public");
+    }
+    protected static async readPackageJson() {
+        const packageJson = JSON.parse(
+            (
+                await fsPromises.readFile(path.join(AppInfo.getRootDirectory(), "package.json"))
+            ).toString()
+        );
+        if (typeof packageJson === "object" && packageJson !== null) {
+            return packageJson;
+        }
+        return {};
     }
 }

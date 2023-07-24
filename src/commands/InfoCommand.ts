@@ -16,7 +16,8 @@ export default class InfoCommand extends Command {
         super("info");
     }
     public override async run(): Promise<void> {
-        Log.info(AppInfo.getNameAndVersion());
+        Log.info(await AppInfo.getNameAndVersion());
+        Log.info(await AppInfo.getDescription());
         Log.info(`  root: ${AppInfo.getRootDirectory()}`);
         Log.info(`public: ${AppInfo.getPublicDirectory()}`);
         Log.info(`  dist: ${AppInfo.getDistDirectory()}`);

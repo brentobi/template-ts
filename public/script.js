@@ -16,12 +16,14 @@ async function loadVersion() {
     });
 }
 
-async function updateTitle() {
-    const {name, version} = await loadVersion();
+async function render() {
+    const {name, version, description} = await loadVersion();
     document.title = `${name} (${version})`;
+    document.getElementById("meta").innerText = `${name} (${version})`;
+    document.getElementById("title").innerText = description;
 }
 
 (async () => {
     await new Promise(res => setTimeout(res, 500));
-    updateTitle();
+    render();
 })();
