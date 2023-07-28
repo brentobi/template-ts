@@ -41,7 +41,7 @@ node dist/bin.js # execute bin
 
 Build executables:
 ```
-npx pkg .
+npm run pkg
 ```
 
 ## Project setup details

@@ -13,7 +13,9 @@
     "prebuild": "npm run test",
     "build": "npm run build:declarations; npm run build:js",
     "build:js": "node builder.js build",
-    "build:declarations": "tsc --declaration --emitDeclarationOnly --outDir ./dist-types/"
+    "build:declarations": "tsc --declaration --emitDeclarationOnly --outDir ./dist-types/",
+    "preexport": "npm run test;npm run build:js",
+    "export": "pkg ."
   },
   "author": "",
   "license": "ISC",

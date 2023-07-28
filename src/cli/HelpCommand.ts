@@ -13,6 +13,6 @@ export default class HelpCommand extends Command {
         ].join("\n");
     }
     public async run() {
-        console.log(this.renderHelp());
+        console.log(await this.renderHelp());
     }
 }
