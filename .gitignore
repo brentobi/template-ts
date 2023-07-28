@@ -1,3 +1,5 @@
 /dist/
 /dist-dev/
+/dist-exe/
+/dist-types/
 /node_modules/
