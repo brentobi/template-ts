@@ -10,8 +10,9 @@ export default class TestDBCommand extends Command {
     public override async run(call: CommandCall): Promise<void> {
         const worker = new Worker(AppInfo.getBinPath(), {
             argv: ["serve-db"]
-        })
+        });
         
+        const cmdCBs = new Map();
         worker.on("message", (msg) => {
             setTimeout(() => {
                 console.log("[MAIN] msg", msg);
@@ -23,7 +24,6 @@ export default class TestDBCommand extends Command {
         });
         worker.on("error", (e) => {console.log("[MAIN] DB error", e);});
         worker.on("exit", (c) => {console.log("[MAIN] DB exit", c);});
-        const cmdCBs = new Map();
         let cmdId = 0;
         const post = (cmd: string) => {
             cmdId++;
@@ -32,14 +32,13 @@ export default class TestDBCommand extends Command {
                 worker.postMessage({cmdId, cmd});
             });
         };
-        await post("set aaa a1");
+
         console.log(await Promise.all([
             post("get aaa"),
             post("get xxx"),
             post("get yyy"),
             post("get ddd"),
         ]));
-        await post("save");
         await post("set ddd d1");
         console.log(await Promise.all([
             post("get aaa"),
@@ -47,12 +46,15 @@ export default class TestDBCommand extends Command {
             post("get xxx"),
             post("get ddd"),
         ]));
-        await post("load");
-        console.log(await Promise.all([
-            post("get aaa"),
-            post("get bbb"),
-            post("get xxx"),
-            post("get ddd"),
-        ]));
+
+        process.on("SIGINT", async () => {
+            await post("stop");
+        });
+        process.on("SIGTERM", async () => {
+            await post("stop");
+        });
+        console.log("Waiting for 5 seconds before exit.");
+        await new Promise(res => setTimeout(res, 5000));
+        await post("stop");
     }
 }
